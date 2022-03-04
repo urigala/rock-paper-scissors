@@ -8,6 +8,14 @@ const computerPlay = () => {
 
 const playerSelection = () => {
     const playerChoice = parseInt(prompt('Enter the number of your choice:\n 1-Rock\n 2-paper\n 3-Scissors'))
+    if (playerChoice > 3 || playerChoice < 0) {
+        alert('Please enter a correct selection.')
+        return 0
+    }
+    if (!playerChoice) {
+    console.log('You canceled the game.')
+        return 0
+    }
     const options = ['Rock', 'Paper', 'Scissors']
     console.log(options[playerChoice - 1])
     return options[playerChoice - 1]
@@ -52,7 +60,12 @@ const game = () => {
     let compWins = 0
 
     for (let i = 0; i < 5; i++) {
-        let result = playRound(playerSelection(), computerPlay())
+        let playerChoice = playerSelection()
+        if (playerChoice === 0) {
+            break
+        }
+        let compuerChoice = computerPlay()
+        let result = playRound(playerChoice, compuerChoice)
         if (result === 0) {
             continue
         } else if (result === 1) {
