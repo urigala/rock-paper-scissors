@@ -1,12 +1,3 @@
-const rockBtn = document.querySelector('.btn1');
-const paperBtn = document.querySelector('.btn2');
-const scissorsBtn = document.querySelector('.btn3');
-
-rockBtn.addEventListener('click', playRound('Rock', computerPlay()));
-paperBtn.addEventListener('click', playRound('Paper', computerPlay()));
-scissorsBtn.addEventListener('click', playRound('Scissors', computerPlay()));
-
-
 const computerPlay = () => {
     const options = ['Rock', 'Paper', 'Scissors']
     const randNum = Math.floor(Math.random() * 3)
@@ -15,23 +6,9 @@ const computerPlay = () => {
     return options[randNum]
 }
 
-const playerSelection = () => {
-    const playerChoice = parseInt(prompt('Enter the number of your choice:\n 1-Rock\n 2-paper\n 3-Scissors'))
-    if (playerChoice > 3 || playerChoice < 0) {
-        alert('Please enter a correct selection.')
-        return 0
-    }
-    if (!playerChoice) {
-    console.log('You canceled the game.')
-        return 0
-    }
-    const options = ['Rock', 'Paper', 'Scissors']
-    console.log(options[playerChoice - 1])
-    return options[playerChoice - 1]
-}
-
-const playRound = (player, computer) => {
-
+const playRound = (e) => {
+    const computer = computerPlay();
+    const player = e.target.innerText;
     if ( player === computer ) {
         console.log('Its a tie.')
         return 0
@@ -82,6 +59,18 @@ const game = () => {
     }
     console.log('Final Score: \n' + 'Player: ' + userWins + '\nComputer: ' + compWins)
 }
+
+const rockBtn = document.querySelector('.btn1');
+const paperBtn = document.querySelector('.btn2');
+const scissorsBtn = document.querySelector('.btn3');
+
+rockBtn.addEventListener('click', playRound);
+rockBtn.addEventListener('click', (e) => {
+    console.log(e.target.innerText)
+});
+
+paperBtn.addEventListener('click', playRound);
+scissorsBtn.addEventListener('click', playRound);
 
 //game()
 
