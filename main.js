@@ -43,23 +43,36 @@ const playRound = (e) => {
             }
         }
     }
+    checkWinner(userScore, computerScore);
 }
 
-const game = () => {
-    let userWins = 0
-    let compWins = 0
-
-    for (let i = 0; i < 5; i++) {
-        let result = playRound(playerChoice, compuerChoice)
-        if (result === 0) {
-            continue
-        } else if (result === 1) {
-            compWins++
-        } else {
-            userWins++
-        }
+const checkWinner = (user, comp) => {
+    if (user === 5) {
+        gameResult.innerText = 'You win! Play Again?';
+        playAgain();
+    } else if ( comp === 5) {
+        gameResult.innerText = 'You lose! Play Again?';
+        playAgain();
     }
-    console.log('Final Score: \n' + 'Player: ' + userWins + '\nComputer: ' + compWins)
+}
+
+const playAgain = () => {
+    const buttonYes = document.createElement('button');
+    const buttonNo = document.createElement('button');
+    buttonYes.textContent = 'Yes';
+    buttonNo.textContent = 'No';
+
+    buttonYes.addEventListener('click', () => {
+        window.location.reload();
+    });
+    buttonNo.addEventListener('click', () => {
+        gameResult.innerText = 'Goodbye!';
+        gameEnd.removeChild(buttonNo);
+        gameEnd.removeChild(buttonYes);
+    });
+
+    gameEnd.appendChild(buttonNo);
+    gameEnd.appendChild(buttonYes);
 }
 
 const rockBtn = document.querySelector('.btn1');
@@ -68,6 +81,8 @@ const scissorsBtn = document.querySelector('.btn3');
 const roundResults = document.querySelector('.round-result');
 const userSpan = document.querySelector('.user-score');
 const computerSpan = document.querySelector('.computer-score');
+const gameResult = document.querySelector('.game-result');
+const gameEnd = document.querySelector('.game-end');
 
 let userScore = 0;
 let computerScore = 0;
@@ -75,6 +90,4 @@ let computerScore = 0;
 rockBtn.addEventListener('click', playRound);
 paperBtn.addEventListener('click', playRound);
 scissorsBtn.addEventListener('click', playRound);
-
-//game()
 
