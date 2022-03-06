@@ -1,3 +1,12 @@
+const rockBtn = document.querySelector('.btn1');
+const paperBtn = document.querySelector('.btn2');
+const scissorsBtn = document.querySelector('.btn3');
+
+rockBtn.addEventListener('click', playRound('Rock', computerPlay()));
+paperBtn.addEventListener('click', playRound('Paper', computerPlay()));
+scissorsBtn.addEventListener('click', playRound('Scissors', computerPlay()));
+
+
 const computerPlay = () => {
     const options = ['Rock', 'Paper', 'Scissors']
     const randNum = Math.floor(Math.random() * 3)
@@ -61,9 +70,6 @@ const game = () => {
 
     for (let i = 0; i < 5; i++) {
         let playerChoice = playerSelection()
-        if (playerChoice === 0) {
-            break
-        }
         let compuerChoice = computerPlay()
         let result = playRound(playerChoice, compuerChoice)
         if (result === 0) {
@@ -77,5 +83,5 @@ const game = () => {
     console.log('Final Score: \n' + 'Player: ' + userWins + '\nComputer: ' + compWins)
 }
 
-game()
+//game()
 
