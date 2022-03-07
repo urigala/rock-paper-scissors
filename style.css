@@ -11,6 +11,10 @@ body {
     align-items: center;
 }
 
+button {
+    cursor: pointer;
+}
+
 .heading {
     width: 100%;
     display: flex;

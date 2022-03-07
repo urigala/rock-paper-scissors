@@ -69,6 +69,9 @@ const playAgain = () => {
         gameResult.innerText = 'Goodbye!';
         gameEnd.removeChild(buttonNo);
         gameEnd.removeChild(buttonYes);
+        setTimeout(() => {
+            window.location.reload();
+        }, 500);
     });
 
     gameEnd.appendChild(buttonNo);
